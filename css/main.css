@@ -397,8 +397,8 @@ td {
 }
 .highlight,
 pre {
-  background: #002451;
-  color: #fff;
+  background: #2d2d2d;
+  color: #ccc;
   line-height: 1.6;
   margin: 0 auto 20px;
 }
@@ -415,7 +415,7 @@ code {
   word-wrap: break-word;
 }
 .highlight *::selection {
-  background: #003f8e;
+  background: #515151;
 }
 .highlight pre {
   border: 0;
@@ -433,7 +433,7 @@ code {
 }
 .highlight figcaption {
   background: #eee;
-  color: #fff;
+  color: #ccc;
   font-size: 0.875em;
   line-height: 1.2;
   padding: 0.5em;
@@ -447,11 +447,11 @@ code {
   clear: both;
 }
 .highlight figcaption a {
-  color: #fff;
+  color: #ccc;
   float: right;
 }
 .highlight figcaption a:hover {
-  border-bottom-color: #fff;
+  border-bottom-color: #ccc;
 }
 .highlight .gutter {
   -moz-user-select: none;
@@ -460,14 +460,14 @@ code {
   user-select: none;
 }
 .highlight .gutter pre {
-  background: #000e20;
-  color: #7285b7;
+  background: #1b1b1b;
+  color: #999;
   padding-left: 10px;
   padding-right: 10px;
   text-align: right;
 }
 .highlight .code pre {
-  background: #002451;
+  background: #2d2d2d;
   padding-left: 10px;
   width: 100%;
 }
@@ -483,7 +483,7 @@ pre {
 }
 pre code {
   background: none;
-  color: #fff;
+  color: #ccc;
   font-size: 0.875em;
   padding: 0;
   text-shadow: none;
@@ -495,14 +495,14 @@ pre .addition {
   background: #008000;
 }
 pre .meta {
-  color: #ffeead;
+  color: #fc6;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
 }
 pre .comment {
-  color: #7285b7;
+  color: #999;
 }
 pre .variable,
 pre .attribute,
@@ -517,7 +517,7 @@ pre .html .doctype,
 pre .css .id,
 pre .css .class,
 pre .css .pseudo {
-  color: #ff9da4;
+  color: #f2777a;
 }
 pre .number,
 pre .preprocessor,
@@ -527,7 +527,7 @@ pre .literal,
 pre .params,
 pre .constant,
 pre .command {
-  color: #ffc58f;
+  color: #f99157;
 }
 pre .ruby .class .title,
 pre .css .rules .attribute,
@@ -540,11 +540,11 @@ pre .ruby .symbol,
 pre .xml .cdata,
 pre .special,
 pre .formula {
-  color: #d1f1a9;
+  color: #9c9;
 }
 pre .title,
 pre .css .hexcolor {
-  color: #9ff;
+  color: #6cc;
 }
 pre .function,
 pre .python .decorator,
@@ -554,11 +554,11 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-  color: #bbdaff;
+  color: #69c;
 }
 pre .keyword,
 pre .javascript .function {
-  color: #ebbbff;
+  color: #c9c;
 }
 .blockquote-center {
   border-left: none;
@@ -1253,7 +1253,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ec326e;
+  background: #afff58;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2388,6 +2388,129 @@ ul.breadcrumb li + li:last-child {
 .has-jax {
   overflow-x: auto;
   overflow-y: hidden;
+}
+#CloudCalendar {
+/*全句背景色*/
+  background-color: #eee;
+}
+#CloudCalendar a {
+  text-decoration: none;
+}
+.cal-head {
+  position: relative;
+  height: 20px;
+  padding: 8px 6px 2px 6px;
+}
+.cal-prev,
+.cal-next {
+  position: absolute;
+  top: 9px;
+  width: 9px;
+  height: 10px;
+  padding: 3px 4px;
+  border: 1px solid transparent;
+  color: #fff;
+  outline: 0;
+}
+.cal-prev {
+  left: 8px;
+}
+.cal-prev:before {
+  border-right: 9px solid #333;
+}
+.cal-next {
+  right: 8px;
+}
+.cal-next:before {
+  border-left: 9px solid #333;
+}
+.cal-prev:before,
+.cal-next:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.cal-title {
+  width: 120px;
+  margin: 0 auto;
+  color: #808080;
+  font: bold 14px/18px Arial;
+  text-align: center;
+}
+.cal-title a {
+  border: 1px solid transparent;
+/*年份颜色*/
+  color: color-link;
+}
+.cal,
+.cal th,
+.cal td {
+  border: 1px solid #eee;
+}
+.cal {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px 0 0 1px;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+}
+.cal th {
+/*星期颜色*/
+  color: color-link;
+  border-width: 0 1px 1px 0;
+  font-weight: 700;
+}
+.cal td {
+  border-width: 0 1px 1px 0;
+}
+.cal tbody a {
+/*有提交的天*/
+  background-color: #000;
+  color: #fff;
+  display: block;
+  border-bottom: 0px solid transparent;
+  font-weight: 700;
+}
+.cal tbody .cal-today {
+/*今天*/
+  color: #555;
+  font-weight: bold;
+}
+.cal .cal-gray {
+/*没提交的天*/
+  color: #808080;
+}
+.cal th,
+.cal td {
+  font-weight: normal;
+  line-height: 2.5625;
+  padding: 0;
+  text-align: center;
+}
+.cal .cal-foot {
+/*底栏箭头切换月*/
+  color: color-link;
+}
+.cal-title a:hover,
+.cal-prev:hover,
+.cal-next:hover,
+.cal .cal-foot:hover,
+.cal .cal-foot:focus {
+/*底栏箭头切换月-鼠标覆盖*/
+  background-color: color-link;
+  color: #000;
+  cursor: pointer;
+  font-weight: bold;
+}
+.cal tbody a:hover,
+.cal tbody a:focus {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
 }
 .header {
   margin: 0 auto;
