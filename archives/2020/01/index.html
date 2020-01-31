@@ -103,6 +103,12 @@
   </style>
 </noscript>
 
+
+  <!-- 引用依赖 -->
+  <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
 <link rel="alternate" href="/atom.xml" title="ThinkCodeStudio" type="application/atom+xml">
 </head>
 
@@ -170,6 +176,11 @@
         <li class="menu-item menu-item-schedule">
 
     <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-音乐">
+
+    <a href="/music/" rel="section"><i class="fa fa-fw fa-music"></i>音乐</a>
 
   </li>
         <li class="menu-item menu-item-留言板">
@@ -685,11 +696,6 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 </script>
 
     </div>
-<!-- 引用依赖 -->
-<link rel="stylesheet" 
-  href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
 
 <!-- 我使用的APlayer本体 -->
 <div class="aplayer" 
@@ -706,5 +712,24 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 <!--如果将本体放在body里面导致页面加载出现问题，请尝试放到body体后面-->
 </body>
 <script type="text/javascript" src="/js/dynamic_bg.js"></script>
+<!-- calendar widget -->
+
+
+    <script src="/lib/CloudCalendar/CloudCalendar.js"></script>
+    <script src="/lib/CloudCalendar/languages.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN', 
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+
 
 </html>
