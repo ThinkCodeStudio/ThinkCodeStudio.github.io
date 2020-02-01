@@ -1253,7 +1253,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #37285e;
+  background: #09ffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2391,7 +2391,7 @@ ul.breadcrumb li + li:last-child {
 }
 #CloudCalendar {
 /*全句背景色*/
-  background-color: #eee;
+  background-color: #fff;
 }
 #CloudCalendar a {
   text-decoration: none;
@@ -2477,7 +2477,7 @@ ul.breadcrumb li + li:last-child {
 }
 .cal tbody .cal-today {
 /*今天*/
-  color: #555;
+  color: #000;
   font-weight: bold;
 }
 .cal .cal-gray {
