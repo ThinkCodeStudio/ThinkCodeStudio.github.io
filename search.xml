@@ -19,7 +19,7 @@
 
 <ul>
 <li>这是找不到AVD的路径了，具体我不知道，我就理解为AS把SDK和AVD分开了。</li>
-<li>解决办法就是环境变量里加一个AVD的变量，变量名<code>ANDROID_SDK_HOME</code><br><img src="../images/AS.png" alt></li>
+<li>解决办法就是环境变量里加一个AVD的变量，变量名<code>ANDROID_SDK_HOME</code><br><img src="/images/AS.png" alt></li>
 </ul>
 <p><strong>前提要把原来的虚拟机都删了，由于需要重新定义路径，最后还是要重建虚拟机</strong></p>
 <p>然后重启AS就可以运行虚拟机了</p>
