@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Rust基础</title>
+    <url>/2020/04/20/Rust%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Rust 速度惊人且内存利用率极高。由于没有运行时和垃圾回收，它能够胜任对性能要求特别高的服务，可以在嵌入式设备上运行，还能轻松和其他语言集成。</p>
+<a id="more"></a>
+<p>知识来源<strong>rust中文</strong>网站中<a href="https://rustlang-cn.org/office/rust/book/" target="_blank" rel="noopener">rust编程语言</a>这本书，这里只是总结整理</p>
+<h1 id="入门安装"><a href="#入门安装" class="headerlink" title="入门安装"></a>入门安装</h1><h2 id="运行指令安装-Linux"><a href="#运行指令安装-Linux" class="headerlink" title="运行指令安装(Linux)"></a>运行指令安装(Linux)</h2><p><code>curl https://sh.rustup.rs -sSf | sh</code></p>
+<h2 id="添加cargo环境变量"><a href="#添加cargo环境变量" class="headerlink" title="添加cargo环境变量"></a>添加cargo环境变量</h2><p><code>source $HOME/.cargo/env</code></p>
+<h2 id="更新与卸载"><a href="#更新与卸载" class="headerlink" title="更新与卸载"></a>更新与卸载</h2><ul>
+<li>更新<br><code>rustup update</code></li>
+<li>卸载<br><code>rustup self uninstall</code><h1 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello,World"></a>Hello,World</h1>前面要建文件夹，我就跳过了，不影响运行，影响管理<h2 id="新建文件"><a href="#新建文件" class="headerlink" title="新建文件"></a>新建文件</h2>rust的源文件是一<code>.rs</code>结尾，所以用<br><code>touch main.rs</code><br>就可以新建rust的源文件，然后用自己喜欢的编辑器打开写代码，比如<strong>nano</strong>and<strong>vim</strong>，我用<strong>树莓派</strong>加上<strong>Remote</strong>VSC插件进行远程开发。<br>在文件中写入代码<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">"Hello, world!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>完成后保存文件退出。</p>
+<h2 id="编译代码"><a href="#编译代码" class="headerlink" title="编译代码"></a>编译代码</h2><p>在终端输入指令</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">$ rustc main.rs</span><br><span class="line">$ ./main</span><br><span class="line">Hello, world!</span><br></pre></td></tr></table></figure>
+
+<p>就可以输出结果了</p>
+<h2 id="分析代码"><a href="#分析代码" class="headerlink" title="分析代码"></a>分析代码</h2>]]></content>
+      <categories>
+        <category>Note</category>
+        <category>Rust</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+        <tag>基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++研究报告</title>
     <url>/2020/03/30/C-%E4%BB%8B%E7%BB%8D/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p><a href="https://zh.cppreference.com/w/%E9%A6%96%E9%A1%B5" target="_blank" rel="noopener">C++参考手册</a></p>
@@ -47,7 +76,44 @@
 <h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>程序的注释是解释性语句，您可以在 C++ 代码中包含注释，这将提高源代码的可读性。所有的编程语言都允许某种形式的注释。<br>C++ 支持单行注释和多行注释。注释中的所有字符会被 C++ 编译器忽略。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">跨行注释</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//单行注释</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>使用编程语言进行编程时，需要用到各种变量来存储各种信息。变量保留的是它所存储的值的内存位置。这意味着，当您创建一个变量时，就会在内存中保留一些空间。<br>|:–:|:–:|<br>|类型|关键字|<br>|布尔型|bool|<br>|字符型|char|<br>|整型|int|<br>|浮点型|float|<br>|双精度浮点型|double|<br>|无类型|void|<br>|宽字符型|wchar_t|<br>其中 wcahr_t 和 short int 一样。</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>使用编程语言进行编程时，需要用到各种变量来存储各种信息。变量保留的是它所存储的值的内存位置。这意味着，当您创建一个变量时，就会在内存中保留一些空间。</p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">关键字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">布尔型</td>
+<td align="center">bool</td>
+</tr>
+<tr>
+<td align="center">字符型</td>
+<td align="center">char</td>
+</tr>
+<tr>
+<td align="center">整型</td>
+<td align="center">int</td>
+</tr>
+<tr>
+<td align="center">浮点型</td>
+<td align="center">float</td>
+</tr>
+<tr>
+<td align="center">双精度浮点型</td>
+<td align="center">double</td>
+</tr>
+<tr>
+<td align="center">无类型</td>
+<td align="center">void</td>
+</tr>
+<tr>
+<td align="center">宽字符型</td>
+<td align="center">wchar_t</td>
+</tr>
+</tbody></table>
+<p>其中 wcahr_t 和 short int 一样。</p>
 <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">short</span> <span class="keyword">int</span> <span class="keyword">wchar_t</span>;</span><br></pre></td></tr></table></figure>
 
 <hr>
