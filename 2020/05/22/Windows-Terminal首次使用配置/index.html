@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/LOGO.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/LOGO.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/LOGO.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://thinkcodestudio.github.io').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: true,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="今天才知道Windows Terminal正式发布了，虽然有点晚，但我也可分享我在配置中遇到的问题。  WT配置 WT添加到右键栏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows Terminal首次使用配置">
+<meta property="og:url" content="https://thinkcodestudio.github.io/2020/05/22/Windows-Terminal首次使用配置/index.html">
+<meta property="og:site_name" content="ThinkCodeStudio">
+<meta property="og:description" content="今天才知道Windows Terminal正式发布了，虽然有点晚，但我也可分享我在配置中遇到的问题。  WT配置 WT添加到右键栏">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-22T16:23:33.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows Terminal首次使用配置">
+<meta name="twitter:description" content="今天才知道Windows Terminal正式发布了，虽然有点晚，但我也可分享我在配置中遇到的问题。  WT配置 WT添加到右键栏">
+
+<link rel="canonical" href="https://thinkcodestudio.github.io/2020/05/22/Windows-Terminal首次使用配置/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Windows Terminal首次使用配置 | ThinkCodeStudio</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+  <!-- 引用依赖 -->
+  <link rel="stylesheet" 
+    href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
+<link rel="alternate" href="/atom.xml" title="ThinkCodeStudio" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+
+  <div class="bg_content">
+    <canvas id="canvas-backgounde"></canvas>
+  </div>
+
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ThinkCodeStudio</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">ThinkCode Project</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">8</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-留言板">
+
+    <a href="/message/" rel="section"><i class="fa fa-fw fa-clipboard"></i>留言板</a>
+
+  </li>
+        <li class="menu-item menu-item-二次元">
+
+    <a href="https://thinkcodestudio.github.io/ACGfun/" rel="section"><i class="fa fa-fw fa-coffee"></i>二次元</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  <a href="https://github.com/ThinkCodeStudio" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://thinkcodestudio.github.io/2020/05/22/Windows-Terminal首次使用配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/40518405?s=400&u=31c96e3ef8c0a87bcca79592399ffde99cc2ca8e&v=4">
+      <meta itemprop="name" content="ThinkCode">
+      <meta itemprop="description" content="Share blogger's knowledge and life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ThinkCodeStudio">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Windows Terminal首次使用配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-22 23:09:47" itemprop="dateCreated datePublished" datetime="2020-05-22T23:09:47+08:00">2020-05-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-23 00:23:33" itemprop="dateModified" datetime="2020-05-23T00:23:33+08:00">2020-05-23</time>
+              </span>
+
+          
+            <span id="/2020/05/22/Windows-Terminal首次使用配置/" class="post-meta-item leancloud_visitors" data-flag-title="Windows Terminal首次使用配置" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/05/22/Windows-Terminal首次使用配置/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/22/Windows-Terminal首次使用配置/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>今天才知道Windows Terminal正式发布了，虽然有点晚，但我也可分享我在配置中遇到的问题。</p>
+<ul>
+<li>WT配置</li>
+<li>WT添加到右键栏</li>
+</ul>
+<a id="more"></a>
+
+<p><strong>我的WT是在微软商城中下载的</strong></p>
+<h1 id="WT配置"><a href="#WT配置" class="headerlink" title="WT配置"></a>WT配置</h1><p>非常详细的配置都在 <a href="https://docs.microsoft.com/zh-cn/windows/terminal/" target="_blank" rel="noopener">微软文档</a> 中说明了，我就不重复了，我只说我遇到的问题。</p>
+<p>这是我的配置文件：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line">// This file was initially generated by Windows Terminal 1.0.1401.0</span><br><span class="line">// It should still be usable in newer versions, but newer versions might have additional</span><br><span class="line">// settings, help text, or changes that you will not see unless you clear this file</span><br><span class="line">// and let us generate a new one for you.</span><br><span class="line"></span><br><span class="line">// To view the default settings, hold "alt" while clicking on the "Settings" button.</span><br><span class="line">// For documentation on these settings, see: https://aka.ms/terminal-documentation</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">"$schema"</span>: <span class="string">"https://aka.ms/terminal-profiles-schema"</span>,</span><br><span class="line"></span><br><span class="line">  <span class="attr">"defaultProfile"</span>: <span class="string">"&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;"</span>,</span><br><span class="line"></span><br><span class="line">  // You can add more global application settings here.</span><br><span class="line">  // To learn more about global settings, visit https://aka.ms/terminal-global-settings</span><br><span class="line"></span><br><span class="line">  // If enabled, selections are automatically copied to your clipboard.</span><br><span class="line">  "copyOnSelect": false,</span><br><span class="line"></span><br><span class="line">  // If enabled, formatted data is also copied to your clipboard</span><br><span class="line">  "copyFormatting": false,</span><br><span class="line"></span><br><span class="line">  // A profile specifies a command to execute paired with information about how it should look and feel.</span><br><span class="line">  // Each one of them will appear in the 'New Tab' dropdown,</span><br><span class="line">  //   and can be invoked from the commandline with `wt.exe -p xxx`</span><br><span class="line">  // To learn more about profiles, visit https://aka.ms/terminal-profile-settings</span><br><span class="line">  "profiles": &#123;</span><br><span class="line">    "defaults": &#123;</span><br><span class="line">      // Put settings here that you want to apply to all profiles.</span><br><span class="line">      "fontSize": 10,</span><br><span class="line">      "fontFace": "Cascadia Code PL",</span><br><span class="line">      "cursorShape": "underscore",</span><br><span class="line">      "useAcrylic": false,</span><br><span class="line">      "acrylicOpacity": 0.5,</span><br><span class="line">      "startingDirectory": "./",</span><br><span class="line">      "disabledProfileSources": [ "Windows.Terminal.Wsl", "Windows.Terminal.Azure", "Windows.Terminal.PowershellCore" ]</span><br><span class="line">    &#125;,</span><br><span class="line">    "list": [</span><br><span class="line">      &#123;</span><br><span class="line">        // Make changes here to the powershell.exe profile.</span><br><span class="line">        "guid": "&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;",</span><br><span class="line">        "name": "PowerShell",</span><br><span class="line">        "commandline": "powershell.exe",</span><br><span class="line">        "hidden": false</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        // Make changes here to the cmd.exe profile.</span><br><span class="line">        "guid": "&#123;0caa0dad-35be-5f56-a8ff-afceeeaa6101&#125;",</span><br><span class="line">        "name": "CMD",</span><br><span class="line">        "commandline": "cmd.exe",</span><br><span class="line">        "hidden": false</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"guid"</span>: <span class="string">"&#123;2c4de342-38b7-51cf-b940-2309a097f518&#125;"</span>,</span><br><span class="line">        <span class="attr">"hidden"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"Ubuntu"</span>,</span><br><span class="line">        <span class="attr">"source"</span>: <span class="string">"Windows.Terminal.Wsl"</span>,</span><br><span class="line">        <span class="attr">"startingDirectory"</span>: <span class="string">"~"</span>,</span><br><span class="line">        <span class="attr">"icon"</span>: <span class="string">"ms-appdata:///roaming/ubuntu.png"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"guid"</span>: <span class="string">"&#123;46ca431a-3a87-5fb3-83cd-11ececc031d2&#125;"</span>,</span><br><span class="line">        <span class="attr">"hidden"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"kali-linux"</span>,</span><br><span class="line">        <span class="attr">"source"</span>: <span class="string">"Windows.Terminal.Wsl"</span>,</span><br><span class="line">        <span class="attr">"startingDirectory"</span>: <span class="string">"~"</span>,</span><br><span class="line">        <span class="attr">"icon"</span>: <span class="string">"ms-appdata:///roaming/kali.png"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"guid"</span>: <span class="string">"&#123;b453ae62-4e3d-5e58-b989-0a998ec441b8&#125;"</span>,</span><br><span class="line">        <span class="attr">"hidden"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"Azure Cloud Shell"</span>,</span><br><span class="line">        <span class="attr">"source"</span>: <span class="string">"Windows.Terminal.Azure"</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  // Add custom color schemes to this array.</span><br><span class="line">  // To learn more about color schemes, visit https://aka.ms/terminal-color-schemes</span><br><span class="line">  "schemes": [],</span><br><span class="line"></span><br><span class="line">  // Add custom keybindings to this array.</span><br><span class="line">  // To unbind a key combination from your defaults.json, set the command to "unbound".</span><br><span class="line">  // To learn more about keybindings, visit https://aka.ms/terminal-keybindings</span><br><span class="line">  "keybindings": [</span><br><span class="line">    // Copy and paste are bound to Ctrl+Shift+C and Ctrl+Shift+V in your defaults.json.</span><br><span class="line">    // These two lines additionally bind them to Ctrl+C and Ctrl+V.</span><br><span class="line">    // To learn more about selection, visit https://aka.ms/terminal-selection</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"command"</span>: &#123;</span><br><span class="line">        <span class="attr">"action"</span>: <span class="string">"copy"</span>,</span><br><span class="line">        <span class="attr">"singleLine"</span>: <span class="literal">false</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"keys"</span>: <span class="string">"ctrl+c"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"command"</span>: <span class="string">"paste"</span>,</span><br><span class="line">      <span class="attr">"keys"</span>: <span class="string">"ctrl+v"</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    // Press Ctrl+Shift+F to open the search box</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"command"</span>: <span class="string">"find"</span>,</span><br><span class="line">      <span class="attr">"keys"</span>: <span class="string">"ctrl+shift+f"</span></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    // Press Alt+Shift+D to open a new pane.</span><br><span class="line">    // - "split": "auto" makes this pane open in the direction that provides the most surface area.</span><br><span class="line">    // - "splitMode": "duplicate" makes the new pane use the focused pane's profile.</span><br><span class="line">    // To learn more about panes, visit https://aka.ms/terminal-panes</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"command"</span>: &#123;</span><br><span class="line">        <span class="attr">"action"</span>: <span class="string">"splitPane"</span>,</span><br><span class="line">        <span class="attr">"split"</span>: <span class="string">"auto"</span>,</span><br><span class="line">        <span class="attr">"splitMode"</span>: <span class="string">"duplicate"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"keys"</span>: <span class="string">"alt+shift+d"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个字体是<strong>后来安装的</strong>，文档有资源。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"fontFace": "Cascadia Code PL",</span><br></pre></td></tr></table></figure>
+
+<p>主要说启动列表</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">  "list": [</span><br><span class="line">    &#123;</span><br><span class="line">      // Make changes here to the powershell.exe profile.</span><br><span class="line">      "guid": "&#123;61c54bbd-c2c6-5271-96e7-009a87ff44bf&#125;",</span><br><span class="line">      "name": "PowerShell",</span><br><span class="line">      "commandline": "powershell.exe",</span><br><span class="line">      "hidden": false</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      // Make changes here to the cmd.exe profile.</span><br><span class="line">      "guid": "&#123;0caa0dad-35be-5f56-a8ff-afceeeaa6101&#125;",</span><br><span class="line">      "name": "CMD",</span><br><span class="line">      "commandline": "cmd.exe",</span><br><span class="line">      "hidden": false</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"guid"</span>: <span class="string">"&#123;2c4de342-38b7-51cf-b940-2309a097f518&#125;"</span>,</span><br><span class="line">      <span class="attr">"hidden"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Ubuntu"</span>,</span><br><span class="line">      <span class="attr">"source"</span>: <span class="string">"Windows.Terminal.Wsl"</span>,</span><br><span class="line">      <span class="attr">"startingDirectory"</span>: <span class="string">"~"</span>,</span><br><span class="line">      <span class="attr">"icon"</span>: <span class="string">"ms-appdata:///roaming/ubuntu.png"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"guid"</span>: <span class="string">"&#123;46ca431a-3a87-5fb3-83cd-11ececc031d2&#125;"</span>,</span><br><span class="line">      <span class="attr">"hidden"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"kali-linux"</span>,</span><br><span class="line">      <span class="attr">"source"</span>: <span class="string">"Windows.Terminal.Wsl"</span>,</span><br><span class="line">      <span class="attr">"startingDirectory"</span>: <span class="string">"~"</span>,</span><br><span class="line">      <span class="attr">"icon"</span>: <span class="string">"ms-appdata:///roaming/kali.png"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"guid"</span>: <span class="string">"&#123;b453ae62-4e3d-5e58-b989-0a998ec441b8&#125;"</span>,</span><br><span class="line">      <span class="attr">"hidden"</span>: <span class="literal">false</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"Azure Cloud Shell"</span>,</span><br><span class="line">      <span class="attr">"source"</span>: <span class="string">"Windows.Terminal.Azure"</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>这个列表的自动生成的，你自己只能添加 <strong>命令选项</strong> ，不能添加外部的程序。比如我试过添加Git工具，始终不显示，最后就放弃了，因该需要特别的设置，要不然为什么<code>source</code>里不像文件路径。</p>
+<ul>
+<li>GUID：全局唯一标识符，生成网站-&gt;<a href="https://www.uuidgenerator.net/" target="_blank" rel="noopener"></a></li>
+</ul>
+<p>图标都放在了 <code>C:\Users\[你的用户文件夹]\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\RoamingState</code> 里就可以写 <code>ms-appdata:///roaming/...</code> 。找不到 <code>AppDate</code> 文件夹的话，网络搜索“显示隐藏文件夹”。</p>
+<p><strong>不要照抄这个配置，这里的配置关系到电脑的开发环境，你没有的话肯定用不了。</strong></p>
+<h1 id="WT添加到右键栏"><a href="#WT添加到右键栏" class="headerlink" title="WT添加到右键栏"></a>WT添加到右键栏</h1><p>重点来了，Linux是偏向终端命令来操作文件，而在Windows环境中更偏向窗口的文件控制，但是由于WT安装时没有配置右键栏操作，所以我们就要自己配置右键栏操作。</p>
+<p><strong>需要操作 注册表，所以没有经验的话，必须在操作前备份注册表，如果失误就会让系统发生错误，这会很麻烦的</strong></p>
+<p>首先 <code>Win + R</code>打开运行，输入 <code>regedit</code> 运行就打开了注册表。</p>
+<ul>
+<li>文件-&gt;导出-&gt;导出范围-&gt;全部-&gt;保存</li>
+</ul>
+<p>这样就备份了注册表。</p>
+<p><code>ctrl + F</code> 查找 <code>Directory</code> ,查看只勾选 <strong>项</strong> ，勾选下面的 <strong>全字匹配</strong> 查找。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-&gt;Directory</span><br><span class="line">|<span class="string"> -&gt;background</span></span><br><span class="line">|<span class="string"> </span>|<span class="string"> -&gt;shell</span></span><br><span class="line">|<span class="string"> </span>|<span class="string"> -&gt;shellex</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>shell</code> 项中，新建一个项，命名随意，但别命名后连自己都不知道是什么。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-&gt;Directory</span><br><span class="line">|<span class="string"> -&gt;background</span></span><br><span class="line">|<span class="string"> </span>|<span class="string"> -&gt;shell</span></span><br><span class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string"> -&gt;WT</span></span><br><span class="line">|<span class="string"> </span>|<span class="string"> -&gt;shellex</span></span><br></pre></td></tr></table></figure>
+
+<p>在右边你会看到项中的信息，<code>(默认)</code> 就是右键栏显示的名字，右键项新建一个 <strong>字符串值</strong> ，命名为 <code>Icon</code> ,字面意思<strong>图标</strong>，双击在数据里面填写图标文件（.ico）文件的路径，但是这个值可以填 <code>exe</code> 文件，有兴趣试试填 <code>png</code> ，记住我的图标文件为 <strong>32X32</strong> ，其他分辨率没试过。</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">类型</th>
+<th align="center">数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">(默认)</td>
+<td align="center">REG_SZ</td>
+<td align="center">Windows Terminal</td>
+</tr>
+<tr>
+<td align="center">Icon</td>
+<td align="center">REG_SZ</td>
+<td align="center">文件路径</td>
+</tr>
+</tbody></table>
+<p>然后再在刚建的下面再建一个项，如果你的 <code>shell</code> 有内容的话看其他一样，就是建 <code>command</code>。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-&gt;Directory</span><br><span class="line">|<span class="string"> -&gt;background</span></span><br><span class="line">|<span class="string"> </span>|<span class="string"> -&gt;shell</span></span><br><span class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string"> -&gt;WT</span></span><br><span class="line">|<span class="string"> </span>|<span class="string"> </span>|<span class="string"> </span>|<span class="string"> -&gt;command</span></span><br><span class="line">|<span class="string"> </span>|<span class="string"> -&gt;shellex</span></span><br></pre></td></tr></table></figure>
+
+<p>在右面的 <code>(默认)</code> 数据里填写WT的应用路径。<br>WT应用路径： </p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"C:<span class="symbol">\U</span>sers<span class="symbol">\[</span>你的用户名文件加]<span class="symbol">\A</span>ppData<span class="symbol">\L</span>ocal<span class="symbol">\M</span>icrosoft<span class="symbol">\W</span>indowsApps<span class="symbol">\w</span>t.exe"</span><br></pre></td></tr></table></figure>
+
+<p>写完后就可以关掉注册表了，没错不需要保存，你在注册表的每一个操作都是实时的，所以你不会注册表就先要备份，操作失误你都不知道怎么死的。</p>
+<p>然后右键就可以打开WT了，但是文件目录不是打开的目录，这个简单，在全局配置里加上这条：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"startingDirectory"</span>: <span class="string">"./"</span>,</span><br></pre></td></tr></table></figure>
+
+<p>问题就解决了。</p>
+<p><strong>我找到别人的方法，被试过仅参考。</strong></p>
+<p>打开CMD</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">%USERPROFILE%</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">%LOCALAPPDATA%</span></span><br></pre></td></tr></table></figure>
+
+<p>如果此处没有报错，则后续可直接使用这两个常量.</p>
+<p>否则请手动在后文中进行如下替换:</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">%USERPROFILE%</span> → C:\Users\[你的用户文件加]</span><br><span class="line"><span class="variable">%LOCALAPPDATA%</span> → C:\Users\[你的用户文件加]\AppData\Local</span><br></pre></td></tr></table></figure>
+
+<p>之后</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> "<span class="variable">%USERPROFILE%</span>\AppData\Local\terminal"</span><br></pre></td></tr></table></figure>
+
+<p>将图标放到这个文件夹里。</p>
+<p>新建文件，填写内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt]</span><br><span class="line">@=&quot;Windows terminal here&quot;</span><br><span class="line">&quot;Icon&quot;=&quot;%USERPROFILE%\\AppData\\Local\\terminal\\wt_32.ico&quot;</span><br><span class="line"></span><br><span class="line">[HKEY_CLASSES_ROOT\Directory\Background\shell\wt\command]</span><br><span class="line">@=&quot;C:\\Users\\[你的用户文件夹]\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe&quot;</span><br></pre></td></tr></table></figure>
+
+<p>另存为 <code>wt.reg</code> 运行。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div></div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/qrcode.png" alt="ThinkCode 比特币">
+        <p>比特币</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/29/pandoc-exited-with-code-null/" rel="next" title="pandoc exited with code null.">
+      pandoc exited with code null. <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WT配置"><span class="nav-number">1.</span> <span class="nav-text">WT配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WT添加到右键栏"><span class="nav-number">2.</span> <span class="nav-text">WT添加到右键栏</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="ThinkCode"
+      src="https://avatars3.githubusercontent.com/u/40518405?s=400&u=31c96e3ef8c0a87bcca79592399ffde99cc2ca8e&v=4">
+  <p class="site-author-name" itemprop="name">ThinkCode</p>
+  <div class="site-description" itemprop="description">Share blogger's knowledge and life</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ThinkCodeStudio" title="GitHub → https://github.com/ThinkCodeStudio" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:tcjiaoshou@gmail.com" title="E-Mail → mailto:tcjiaoshou@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/59494099" title="BILIBILI → https://space.bilibili.com/59494099" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>BILIBILI</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → /atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+
+<div class="widget-wrap" style="width: 90%;margin-left: auto;margin-right: auto; opacity: 0.97;">
+	<div class="widget" id="CloudCalendar"></div>
+</div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ThinkCode</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">31k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">29 分钟</span>
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div>
+ <div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>人
+  </span>
+  <span class="post-meta-divider">|</span>
+  <span id="busuanzi_container_site_pv">
+    本站总访问量:<span id="busuanzi_value_site_pv"></span>次
+  </span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.0
+  </div>
+-->
+
+        
+
+
+
+
+
+
+  <script pjax>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=GfcMcHMCoBGFJ8Ay1Cn4heYn-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'GfcMcHMCoBGFJ8Ay1Cn4heYn-gzGzoHsz',
+            'X-LC-Key': 'ppda4WUAyMPM9U3EnAOw41TQ',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'GfcMcHMCoBGFJ8Ay1Cn4heYn-gzGzoHsz',
+      appKey: 'ppda4WUAyMPM9U3EnAOw41TQ',
+      placeholder: "留下来提一条意见吧~",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: false,
+      lang: '' || 'zh-cn',
+      path: location.pathname,
+      recordIP: false,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+
+<!-- 我使用的APlayer本体 -->
+<div class="aplayer" 
+  data-id="2099954249" 
+  data-server="netease" 
+  data-type="playlist" 
+  data-fixed="true" 
+  data-autoplay="true" 
+  data-order="random" 
+  data-volume="0.20" 
+  data-theme="#cc543a" 
+  date-preload="auto" >
+  </div>
+<!--如果将本体放在body里面导致页面加载出现问题，请尝试放到body体后面-->
+<!-- calendar widget -->
+
+
+    <script src="/lib/CloudCalendar/CloudCalendar.js"></script>
+    <script src="/lib/CloudCalendar/languages.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        $('#CloudCalendar').aCalendar('zh-CN', 
+            $.extend(
+                '', {
+                    single:true,
+                    root:'/calendar/'
+                }
+            )
+        );
+    });
+    </script>
+
+
+
+</body>
+<script type="text/javascript" src="/js/dynamic_bg.js"></script>
+
+</html>
