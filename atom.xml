@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://thinkcodestudio.github.io/"/>
-  <updated>2020-05-22T16:30:28.868Z</updated>
+  <updated>2020-06-29T17:35:00.046Z</updated>
   <id>https://thinkcodestudio.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AMD显卡解决OBS屏幕捕捉黑屏问题</title>
+    <link href="https://thinkcodestudio.github.io/2020/06/30/AMD%E6%98%BE%E5%8D%A1%E8%A7%A3%E5%86%B3OBS%E5%B1%8F%E5%B9%95%E6%8D%95%E6%8D%89%E9%BB%91%E5%B1%8F%E9%97%AE%E9%A2%98/"/>
+    <id>https://thinkcodestudio.github.io/2020/06/30/AMD%E6%98%BE%E5%8D%A1%E8%A7%A3%E5%86%B3OBS%E5%B1%8F%E5%B9%95%E6%8D%95%E6%8D%89%E9%BB%91%E5%B1%8F%E9%97%AE%E9%A2%98/</id>
+    <published>2020-06-29T17:04:06.000Z</published>
+    <updated>2020-06-29T17:35:00.046Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>问题我不多说，能看到这篇博客的人都应该有一样的问题吧。<br>我的主要问题就是如果想正常使用OBS的话需要到设备管理器中 <strong>禁用</strong> AMD显卡驱动才能解决黑屏问题。黑屏问题就是显卡的时，但是网上都是英伟达显卡的解决教程。<br>但是今天，困扰我多年的AMD显卡使用OBS时屏幕捕捉一直黑屏的问题终于解决了。</p><a id="more"></a><p>首先看结果<br><img src="/image/OBS/OK.png" alt></p><p>**这个AMD的驱动设置完全没有任何用处，所以不要相信它。</p><p><img src="/image/OBS/AMD.png" alt></p><p>首先在设置-&gt;系统-&gt;显示-&gt;图形设置界面中<br><em>在桌面右键中显示设置也可以找到</em></p><p><img src="/image/OBS/1.png" alt></p><p>点击浏览找到你OBS在磁盘中的exe文件。<br><em>红线是我的OSB文件位置，从bin往后应该是一样的，前面就是你自己把OBS安装的位置了。</em></p><p><img src="/image/OBS/2.png" alt></p><p>点击 <strong>选项</strong></p><p><img src="/image/OBS/3.png" alt></p><p>选择 <strong>节能-&gt;保存</strong> 就可以了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;问题我不多说，能看到这篇博客的人都应该有一样的问题吧。&lt;br&gt;我的主要问题就是如果想正常使用OBS的话需要到设备管理器中 &lt;strong&gt;禁用&lt;/strong&gt; AMD显卡驱动才能解决黑屏问题。黑屏问题就是显卡的时，但是网上都是英伟达显卡的解决教程。&lt;br&gt;但是今天，困扰我多年的AMD显卡使用OBS时屏幕捕捉一直黑屏的问题终于解决了。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="IDE" scheme="https://thinkcodestudio.github.io/categories/IDE/"/>
+    
+    
+      <category term="Error" scheme="https://thinkcodestudio.github.io/tags/Error/"/>
+    
+  </entry>
   
   <entry>
     <title>Windows Terminal首次使用配置</title>
@@ -44,16 +67,13 @@
     <link href="https://thinkcodestudio.github.io/2020/04/29/pandoc-exited-with-code-null/"/>
     <id>https://thinkcodestudio.github.io/2020/04/29/pandoc-exited-with-code-null/</id>
     <published>2020-04-29T09:45:24.000Z</published>
-    <updated>2020-05-22T16:28:14.527Z</updated>
+    <updated>2020-06-30T15:01:33.918Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><a id="more"></a><p>你是否也遇到了这个问题 <code>pandoc exited with code null.</code><br>昨天还可以生成，今天就完了。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: </span><br><span class="line">[ERROR][hexo-renderer-pandoc] On D:\_Blog\_Blog\source\_posts\ANDROID-SDK-ROOT.md       </span><br><span class="line">[ERROR][hexo-renderer-pandoc] pandoc exited with code null.</span><br><span class="line">    at Hexo.pandocRenderer (D:\_Blog\_Blog\node_modules\hexo-renderer-pandoc\index.js:114:11)</span><br><span class="line">    at Hexo.tryCatcher (D:\_Blog\_Blog\node_modules\bluebird\js\release\util.js:16:23)  </span><br><span class="line">    at Hexo.&lt;anonymous&gt; (D:\_Blog\_Blog\node_modules\bluebird\js\release\method.js:15:34)</span><br><span class="line">    at Promise.then.text (D:\_Blog\_Blog\node_modules\hexo\lib\hexo\render.js:60:20)    </span><br><span class="line">    at tryCatcher (D:\_Blog\_Blog\node_modules\bluebird\js\release\util.js:16:23)       </span><br><span class="line">    at Promise._settlePromiseFromHandler (D:\_Blog\_Blog\node_modules\bluebird\js\release\promise.js:517:31)</span><br><span class="line">    at Promise._settlePromise (D:\_Blog\_Blog\node_modules\bluebird\js\release\promise.j    at Promise._settlePromiseCtx (D:\_Blog\_Blog\node_modules\bluebird\js\release\promise.js:611:10)</span><br><span class="line">    at _drainQueueStep (D:\_Blog\_Blog\node_modules\bluebird\js\release\async.js:142:12)    at _drainQueue (D:\_Blog\_Blog\node_modules\bluebird\js\release\async.js:131:9)     </span><br><span class="line">    at Async._drainQueues (D:\_Blog\_Blog\node_modules\bluebird\js\release\async.js:147:5)</span><br><span class="line">    at Immediate.Async.drainQueues [as _onImmediate] (D:\_Blog\_Blog\node_modules\bluebird\js\release\async.js:17:14)</span><br><span class="line">    at runCallback (timers.js:705:18)</span><br><span class="line">    at tryOnImmediate (timers.js:676:5)</span><br><span class="line">    at processImmediate (timers.js:658:5)</span><br></pre></td></tr></table></figure><p>放心，这不是你的问题，这是hexo-renderer-pandoc包的问题。<br>把它删掉就解决了</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm remove --save hexo-renderer-pandoc</span><br></pre></td></tr></table></figure><p>命令删不了的话，直接在文件夹里删，在 <code>node_modules</code> 里找到 <code>hexo-renderer-pandoc</code> 删掉。</p><p>我就是这么解决的，不知道你行不行。</p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>你是否也遇到了这个问题 <code>pandoc exited with code null.</code><br>昨天还可以生成，今天就完了。</p><a id="more"></a><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">FATAL Something's wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">Error: </span><br><span class="line">[ERROR][hexo-renderer-pandoc] On D:\_Blog\_Blog\source\_posts\ANDROID-SDK-ROOT.md       </span><br><span class="line">[ERROR][hexo-renderer-pandoc] pandoc exited with code null.</span><br><span class="line">    at Hexo.pandocRenderer (D:\_Blog\_Blog\node_modules\hexo-renderer-pandoc\index.js:114:11)</span><br><span class="line">    at Hexo.tryCatcher (D:\_Blog\_Blog\node_modules\bluebird\js\release\util.js:16:23)  </span><br><span class="line">    at Hexo.&lt;anonymous&gt; (D:\_Blog\_Blog\node_modules\bluebird\js\release\method.js:15:34)</span><br><span class="line">    at Promise.then.text (D:\_Blog\_Blog\node_modules\hexo\lib\hexo\render.js:60:20)    </span><br><span class="line">    at tryCatcher (D:\_Blog\_Blog\node_modules\bluebird\js\release\util.js:16:23)       </span><br><span class="line">    at Promise._settlePromiseFromHandler (D:\_Blog\_Blog\node_modules\bluebird\js\release\promise.js:517:31)</span><br><span class="line">    at Promise._settlePromise (D:\_Blog\_Blog\node_modules\bluebird\js\release\promise.j    at Promise._settlePromiseCtx (D:\_Blog\_Blog\node_modules\bluebird\js\release\promise.js:611:10)</span><br><span class="line">    at _drainQueueStep (D:\_Blog\_Blog\node_modules\bluebird\js\release\async.js:142:12)    at _drainQueue (D:\_Blog\_Blog\node_modules\bluebird\js\release\async.js:131:9)     </span><br><span class="line">    at Async._drainQueues (D:\_Blog\_Blog\node_modules\bluebird\js\release\async.js:147:5)</span><br><span class="line">    at Immediate.Async.drainQueues [as _onImmediate] (D:\_Blog\_Blog\node_modules\bluebird\js\release\async.js:17:14)</span><br><span class="line">    at runCallback (timers.js:705:18)</span><br><span class="line">    at tryOnImmediate (timers.js:676:5)</span><br><span class="line">    at processImmediate (timers.js:658:5)</span><br></pre></td></tr></table></figure><p>放心，这不是你的问题，这是hexo-renderer-pandoc包的问题。<br>把它删掉就解决了</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm remove --save hexo-renderer-pandoc</span><br></pre></td></tr></table></figure><p>命令删不了的话，直接在文件夹里删，在 <code>node_modules</code> 里找到 <code>hexo-renderer-pandoc</code> 删掉。</p><p>我就是这么解决的，不知道你行不行。</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot; cla
-      
+      &lt;p&gt;你是否也遇到了这个问题 &lt;code&gt;pandoc exited with code null.&lt;/code&gt;&lt;br&gt;昨天还可以生成，今天就完了。&lt;/p&gt;
     
     </summary>
     
