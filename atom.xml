@@ -6,7 +6,7 @@
   <link href="https://thinkcodestudio.github.io/atom.xml" rel="self"/>
   
   <link href="https://thinkcodestudio.github.io/"/>
-  <updated>2025-10-21T09:27:08.665Z</updated>
+  <updated>2025-10-22T00:38:30.621Z</updated>
   <id>https://thinkcodestudio.github.io/</id>
   
   <author>
@@ -21,16 +21,10 @@
     <link href="https://thinkcodestudio.github.io/2025/10/21/%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91Linux%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F-HelloLinux/"/>
     <id>https://thinkcodestudio.github.io/2025/10/21/%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91Linux%E6%9C%80%E5%B0%8F%E7%B3%BB%E7%BB%9F-HelloLinux/</id>
     <published>2025-10-21T08:09:55.000Z</published>
-    <updated>2025-10-21T09:27:08.665Z</updated>
+    <updated>2025-10-22T00:38:30.621Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;一直想踏入Linux这个级别的嵌入式开发, 想使用性能更强的硬件设备, 以前也尝试过研究 rk3506 的SDK, 但是内容是在太多了,</summary>
-        
-      
+    <summary type="html">&lt;p&gt;一直想踏入Linux这个级别的嵌入式开发, 想使用性能更强的硬件设备, 以前也尝试过研究 rk3506 的SDK, 但是内容是在太多了, 也非常复杂, 而且瑞芯微和板商都做了非常多的工作导致非常完善无从下手, 所以我尝试编译Linux源码来起步学习.  &lt;/p&gt;</summary>
     
     
     
@@ -48,16 +42,10 @@
     <link href="https://thinkcodestudio.github.io/2025/10/11/Rust-Knurling%E6%A1%86%E6%9E%B6%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/"/>
     <id>https://thinkcodestudio.github.io/2025/10/11/Rust-Knurling%E6%A1%86%E6%9E%B6%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BC%80%E5%8F%91/</id>
     <published>2025-10-11T05:18:18.000Z</published>
-    <updated>2025-10-11T06:53:13.032Z</updated>
+    <updated>2025-10-22T00:42:03.409Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;什么是Knurling&quot;&gt;&lt;a href=&quot;#什么是Knurling&quot; class=&quot;headerlink&quot; title=&quot;什么是Knurling&quot;&gt;&lt;/a&gt;什么是Knurling&lt;/h1&gt;&lt;p&gt;&lt;a</summary>
-        
-      
+    <summary type="html">&lt;p&gt;本章使用 Knurling Rust 嵌入式框架完成环境部署, 快速使用, 实机运行等任务&lt;/p&gt;</summary>
     
     
     
@@ -75,16 +63,10 @@
     <link href="https://thinkcodestudio.github.io/2025/10/11/hello-world/"/>
     <id>https://thinkcodestudio.github.io/2025/10/11/hello-world/</id>
     <published>2025-10-11T00:46:01.481Z</published>
-    <updated>2025-10-11T00:46:01.481Z</updated>
+    <updated>2025-10-22T00:43:41.728Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;</summary>
     
     
     
